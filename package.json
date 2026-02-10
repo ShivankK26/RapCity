@@ -1,6 +1,6 @@
 {
-  "name": "botcity-nextjs",
-  "version": "3.0.0",
+  "name": "rapbattleai",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

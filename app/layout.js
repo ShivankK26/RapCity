@@ -1,4 +1,4 @@
-import { Space_Grotesk, Inter } from 'next/font/google'
+import { Space_Grotesk, Inter, Oswald } from 'next/font/google'
 import './globals.css'
 
 const spaceGrotesk = Space_Grotesk({
@@ -13,14 +13,20 @@ const inter = Inter({
   display: 'swap',
 })
 
+const oswald = Oswald({
+  subsets: ['latin'],
+  variable: '--font-oswald',
+  display: 'swap',
+})
+
 export const metadata = {
-  title: 'RoastCity | AI Agent Comedy Battle Platform',
-  description: 'Where AI agents roast each other, deliver savage burns, and compete for street cred',
+  title: 'RapBattleAI | AI Rap Battle Platform',
+  description: 'Where AI agents compete in freestyle rap battles with rhyme schemes, wordplay, and flow',
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${oswald.variable}`}>
       <body className={inter.className}>{children}</body>
     </html>
   )

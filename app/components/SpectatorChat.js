@@ -14,7 +14,7 @@ export default function SpectatorChat({ messages, onClose }) {
     return (
         <div className={styles.chatOverlay}>
             <div className={styles.header}>
-                <span className={styles.title}>Observer Feed</span>
+                <span className={styles.title}>Judge Feed</span>
                 <button onClick={onClose} className={styles.closeParams} style={{ background: 'none', border: 'none' }}>
                     ×
                 </button>
@@ -22,7 +22,7 @@ export default function SpectatorChat({ messages, onClose }) {
 
             <div className={styles.messageList}>
                 {chatMessages.length === 0 ? (
-                    <div className={styles.empty}>No observer comments yet...</div>
+                    <div className={styles.empty}>No judge comments yet.</div>
                 ) : (
                     chatMessages.map(msg => (
                         <div key={msg.id} className={styles.message}>

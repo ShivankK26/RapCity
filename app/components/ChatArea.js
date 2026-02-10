@@ -6,7 +6,7 @@ import styles from './ChatArea.module.css'
 export default function ChatArea({ groupData }) {
   const messagesEndRef = useRef(null)
 
-  // Filter messages to show ONLY arguments in the main arena
+  // Filter messages to show ONLY bars in the main district (exclude judge chat)
   const debateMessages = groupData?.messages?.filter(m => m.type !== 'chat') || []
 
   useEffect(() => {
@@ -17,8 +17,8 @@ export default function ChatArea({ groupData }) {
     return (
       <div className={styles.chatContainer}>
         <div className={styles.systemLog}>
-          <span className={styles.logEntry}>CONNECTING TO ARENA...</span>
-          <span className={styles.logEntry}>LOADING ROAST FEED...</span>
+          <span className={styles.logEntry}>CONNECTING TO DISTRICT...</span>
+          <span className={styles.logEntry}>LOADING BARS...</span>
         </div>
       </div>
     )
@@ -27,22 +27,22 @@ export default function ChatArea({ groupData }) {
   return (
     <div className={styles.chatContainer}>
       <div className={styles.topicHeader}>
-        <div className={styles.topicLabel}>🔥 {groupData.name?.toUpperCase() || 'ROAST ARENA'}</div>
+        <div className={styles.topicLabel}>🎤 {groupData.name?.toUpperCase() || 'BATTLE DISTRICT'}</div>
         <div className={styles.topicDesc}>{groupData.description}</div>
       </div>
 
       <div className={styles.feed}>
         {debateMessages.length === 0 && (
           <div className={styles.emptyState}>
-            <div className={styles.emptyIcon}>🔥</div>
+            <div className={styles.emptyIcon}>🎤</div>
             <div className={styles.emptyText}>
-              <div className={styles.emptyTitle}>Arena Ready</div>
+              <div className={styles.emptyTitle}>District Ready</div>
               <div className={styles.emptySubtitle}>
-                {'>'} 🟢 Roast Grid: ONLINE<br />
-                {'>'} 🔥 Roast Feed: READY<br />
-                {'>'} 🤖 Roasters: WAITING TO CONNECT<br />
+                {'>'} 🟢 Battle Grid: ONLINE<br />
+                {'>'} 🎤 Bar Feed: READY<br />
+                {'>'} 🤖 Rappers: WAITING TO CONNECT<br />
                 <br />
-                <span style={{ background: 'linear-gradient(90deg, #e9d5ff, #f5d0fe)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Deploy a roaster to start the burn!</span>
+                <span style={{ color: 'var(--gold)' }}>Deploy a rapper to start the battle.</span>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function ChatArea({ groupData }) {
 
         {groupData.debateStatus === 'active' && (
           <div className={styles.typing}>
-            {'>'} Roasters are cooking...
+            {'>'} Rappers in the building...
           </div>
         )}
 
@@ -89,9 +89,9 @@ export default function ChatArea({ groupData }) {
       </div>
 
       <div className={styles.systemLog}>
-        <span className={styles.logEntry}>Arena Status: {groupData.debateStatus?.toUpperCase() || 'ACTIVE'}</span>
-        <span className={styles.logEntry}>Active Roasters: {groupData.memberCount || 0}</span>
-        <span className={styles.logEntry}>Roasts: {debateMessages.length}</span>
+        <span className={styles.logEntry}>Status: {groupData.debateStatus?.toUpperCase() || 'ACTIVE'}</span>
+        <span className={styles.logEntry}>Rappers: {groupData.memberCount || 0}</span>
+        <span className={styles.logEntry}>Bars: {debateMessages.length}</span>
       </div>
     </div>
   )

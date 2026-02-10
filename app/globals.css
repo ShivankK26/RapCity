@@ -1,27 +1,41 @@
 :root {
-  /* Gradient theme */
-  --gradient-bg: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-  --gradient-bg-alt: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  --gradient-panel: linear-gradient(165deg, rgba(88, 28, 135, 0.4) 0%, rgba(67, 56, 202, 0.3) 50%, rgba(30, 58, 138, 0.4) 100%);
-  --gradient-card: linear-gradient(145deg, rgba(139, 92, 246, 0.15) 0%, rgba(236, 72, 153, 0.1) 50%, rgba(99, 102, 241, 0.12) 100%);
-  --gradient-card-border: linear-gradient(135deg, rgba(167, 139, 250, 0.5), rgba(236, 72, 153, 0.4));
-  --gradient-accent: linear-gradient(90deg, #a855f7, #ec4899);
-  --gradient-accent-vertical: linear-gradient(180deg, #a855f7, #ec4899);
-  --gradient-text: linear-gradient(90deg, #e9d5ff, #f5d0fe);
-  --gradient-cta: linear-gradient(135deg, #f97316, #ec4899);
-  --gradient-cta-hover: linear-gradient(135deg, #fb923c, #f472b6);
+  /* Arena theme: dark + gold/amber */
+  --bg-base: #0a0a0c;
+  --bg-elevated: #141416;
+  --bg-card: #18181b;
+  --bg-panel: #1c1c1f;
 
-  --text-primary: #f3e8ff;
-  --text-on-dark: #f5f3ff;
-  --text-secondary: #c4b5fd;
-  --text-dim: #a78bfa;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.12);
 
-  --border-glow: rgba(167, 139, 250, 0.4);
-  --success: #34d399;
-  --warning: #fbbf24;
-  /* Solid fallbacks for dynamic styles (e.g. ParticipantPanel) */
-  --accent: #a855f7;
-  --accent-cta: #ec4899;
+  --gold: #eab308;
+  --gold-dim: #ca8a04;
+  --gold-glow: rgba(234, 179, 8, 0.35);
+  --amber: #f59e0b;
+
+  --cyan: #22d3ee;
+  --cyan-dim: #06b6d4;
+  --red: #ef4444;
+
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-dim: #71717a;
+  --text-muted: #52525b;
+
+  /* Legacy aliases for components */
+  --gradient-bg: linear-gradient(180deg, #0a0a0c 0%, #141416 50%, #0a0a0c 100%);
+  --gradient-panel: var(--bg-panel);
+  --gradient-card: var(--bg-card);
+  --gradient-text: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
+  --gradient-accent: linear-gradient(90deg, var(--gold), var(--amber));
+  --gradient-cta: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
+  --gradient-cta-hover: linear-gradient(135deg, #facc15 0%, #fbbf24 100%);
+  --border-glow: rgba(234, 179, 8, 0.25);
+  --gradient-card-border: rgba(234, 179, 8, 0.2);
+  --success: #22c55e;
+  --warning: #eab308;
+  --accent: var(--gold);
+  --accent-cta: var(--amber);
 }
 
 * {
@@ -31,42 +45,38 @@
 }
 
 body {
-  font-family: var(--font-inter), sans-serif;
-  background: var(--gradient-bg);
-  background-attachment: fixed;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  background: var(--bg-base);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* Headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-space), sans-serif;
+  font-family: var(--font-space), system-ui, sans-serif;
   letter-spacing: -0.02em;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(30, 27, 75, 0.5);
-  border-radius: 4px;
+  background: var(--bg-elevated);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--gradient-accent);
-  border-radius: 4px;
+  background: var(--text-muted);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  opacity: 0.9;
+  background: var(--text-dim);
 }
 
-@keyframes pulse-primary {
-  0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); }
-  70% { box-shadow: 0 0 0 12px rgba(168, 85, 247, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
+@keyframes pulse-gold {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--gold-glow); }
+  50% { opacity: 0.9; box-shadow: 0 0 12px 2px var(--gold-glow); }
 }

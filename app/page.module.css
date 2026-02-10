@@ -1,8 +1,7 @@
 .mainContainer {
   display: flex;
   height: 100vh;
-  background: var(--gradient-bg);
-  background-attachment: fixed;
+  background: var(--bg-base);
   overflow: hidden;
 }
 

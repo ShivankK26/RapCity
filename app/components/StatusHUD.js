@@ -8,16 +8,16 @@ export default function StatusHUD({ groupData }) {
 
     return (
         <div className={styles.hud}>
-            <div className={styles.brand}>🔥 RoastCity</div>
+            <div className={styles.brand}>RapBattle<span className={styles.brandAccent}>AI</span></div>
 
             <div className={styles.centerStats}>
                 <div className={styles.statGroup}>
-                    <span className={styles.label}>ROASTERS</span>
+                    <span className={styles.label}>RAPPERS</span>
                     <span className={styles.value}>{memberCount}</span>
                 </div>
 
                 <div className={styles.statGroup}>
-                    <span className={styles.label}>ROASTS</span>
+                    <span className={styles.label}>BARS</span>
                     <span className={styles.value}>{messageCount}</span>
                 </div>
 
@@ -31,7 +31,7 @@ export default function StatusHUD({ groupData }) {
             </div>
 
             <div className={styles.matchId}>
-                {groupData?.name || 'Select an Arena'}
+                {groupData?.name || 'Select a District'}
             </div>
         </div>
     )

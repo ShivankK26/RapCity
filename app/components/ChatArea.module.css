@@ -2,46 +2,39 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--gradient-bg);
-  background-attachment: fixed;
+  background: var(--bg-base);
   position: relative;
   overflow: hidden;
 }
 
 .topicHeader {
-  padding: 1.25rem 2rem;
-  border-bottom: 1px solid var(--border-glow);
-  background: var(--gradient-panel);
-  backdrop-filter: blur(12px);
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-panel);
 }
 
 .topicLabel {
-  font-family: var(--font-space);
-  background: var(--gradient-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  font-family: var(--font-space), sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-bottom: 0.35rem;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
 }
 
 .topicDesc {
-  font-family: var(--font-inter);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
   line-height: 1.4;
-  margin-top: 0.2rem;
 }
 
 .feed {
   flex: 1;
-  padding: 2rem;
+  padding: 1.5rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  background: linear-gradient(180deg, transparent 0%, rgba(88, 28, 135, 0.05) 100%);
+  gap: 1.25rem;
 }
 
 .emptyState {
@@ -49,50 +42,50 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  min-height: 280px;
   padding: 2rem;
   text-align: center;
 }
 
 .emptyIcon {
-  font-size: 4rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
+  color: var(--gold);
+  opacity: 0.8;
   animation: float 3s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.4));
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
 }
 
 .emptyTitle {
-  font-family: var(--font-space);
-  font-size: 1.4rem;
-  background: var(--gradient-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 1rem;
+  font-family: var(--font-space), sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
 }
 
 .emptySubtitle {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  line-height: 1.8;
+  line-height: 1.7;
   text-align: left;
+  max-width: 320px;
 }
 
 .messageRow {
   display: flex;
   flex-direction: column;
-  animation: fadeIn 0.3s ease-out;
-  width: 100%;
+  animation: fadeIn 0.25s ease-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -100,97 +93,80 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .senderName {
-  font-family: var(--font-space);
-  font-size: 0.85rem;
-  background: var(--gradient-accent);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: var(--font-space), sans-serif;
+  font-size: 0.8rem;
   font-weight: 600;
+  color: var(--gold);
 }
 
 .timestamp {
-  font-family: var(--font-space);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--text-dim);
 }
 
 .messageBox {
   width: 100%;
-  background: var(--gradient-card);
-  border: 1px solid var(--border-glow);
-  border-left: 4px solid #a855f7;
-  border-radius: 16px;
-  padding: 1rem 1.5rem;
-  transition: all 0.2s;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(8px);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  transition: box-shadow 0.2s;
 }
 
 .messageBox:hover {
-  box-shadow: 0 6px 28px rgba(168, 85, 247, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .content {
-  font-family: var(--font-inter);
   color: var(--text-primary);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
 .messageFooter {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--border-glow);
-  font-family: var(--font-space);
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border);
   font-size: 0.75rem;
 }
 
 .voteSection {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .voteBtn {
-  background: rgba(30, 27, 75, 0.5);
-  border: 1px solid var(--border-glow);
-  color: var(--text-secondary);
-  padding: 0.3rem 0.6rem;
-  font-size: 0.85rem;
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
   cursor: not-allowed;
-  border-radius: 10px;
-  transition: all 0.2s;
-  font-family: var(--font-space);
-}
-
-.voteBtn:hover {
-  border-color: #a78bfa;
-  color: var(--text-primary);
+  border-radius: 6px;
 }
 
 .score {
-  color: var(--text-primary);
+  color: var(--text-secondary);
   font-weight: 600;
-  padding: 0.3rem 0.75rem;
-  background: var(--gradient-card);
-  border: 1px solid var(--border-glow);
-  border-radius: 10px;
+  padding: 0.25rem 0.6rem;
+  background: var(--bg-base);
+  border-radius: 6px;
+  border: 1px solid var(--border);
 }
 
 .typing {
-  font-family: var(--font-space);
-  color: var(--text-dim);
   font-size: 0.75rem;
-  text-transform: uppercase;
-  padding: 1rem 2rem;
-  text-align: right;
+  color: var(--text-dim);
+  padding: 0.5rem 0;
   animation: pulse 1.5s infinite;
 }
 
@@ -200,23 +176,20 @@
 }
 
 .systemLog {
-  margin-top: auto;
-  border-top: 1px solid var(--border-glow);
-  padding: 1rem 2rem;
-  background: var(--gradient-panel);
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg-panel);
   font-family: ui-monospace, monospace;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--text-dim);
-  backdrop-filter: blur(8px);
 }
 
 .logEntry {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
   display: block;
 }
 
 .logEntry::before {
   content: '> ';
-  color: var(--text-dim);
   opacity: 0.7;
 }

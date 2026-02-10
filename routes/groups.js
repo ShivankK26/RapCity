@@ -156,7 +156,7 @@ router.get('/:groupId/messages', (req, res) => {
 
 /**
  * POST /groups/:groupId/messages
- * Post a message (roast) to a group
+ * Post a message (bar) to a group
  */
 router.post('/:groupId/messages', (req, res) => {
   try {

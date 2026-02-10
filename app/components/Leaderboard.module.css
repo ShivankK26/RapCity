@@ -1,13 +1,11 @@
 .leaderboard {
-  background: var(--gradient-panel);
-  border: 1px solid var(--border-glow);
-  border-radius: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
   padding: 1.25rem;
   width: 100%;
-  max-width: 350px;
+  max-width: 340px;
   margin-top: 1rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(12px);
 }
 
 .header {
@@ -16,21 +14,21 @@
   gap: 0.5rem;
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--border-glow);
+  border-bottom: 1px solid var(--border);
 }
 
 .icon {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  color: var(--gold);
 }
 
 .title {
-  font-family: var(--font-space);
-  font-size: 1rem;
-  background: var(--gradient-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: var(--font-space), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   margin: 0;
 }
 
@@ -45,32 +43,29 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
 .item {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  background: var(--gradient-card);
-  border: 1px solid var(--border-glow);
-  border-radius: 12px;
+  padding: 0.65rem 0.85rem;
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: 10px;
   transition: all 0.2s;
 }
 
 .item:hover {
-  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.2);
-  transform: translateX(4px);
+  border-color: rgba(234, 179, 8, 0.3);
 }
 
 .rank {
-  font-family: var(--font-space);
-  font-size: 0.9rem;
-  font-weight: bold;
-  background: var(--gradient-accent);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: var(--font-space), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold);
   min-width: 2rem;
 }
 
@@ -80,7 +75,6 @@
 }
 
 .name {
-  font-family: var(--font-inter);
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -92,7 +86,7 @@
 .stats {
   display: flex;
   gap: 0.5rem;
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
 }
 
 .rep,
@@ -102,7 +96,7 @@
 }
 
 .rep {
-  color: var(--success);
+  color: var(--gold);
 }
 
 .badges {
@@ -111,11 +105,6 @@
 }
 
 .badge {
-  font-size: 0.9rem;
-  opacity: 0.85;
-  transition: opacity 0.2s;
-}
-
-.badge:hover {
-  opacity: 1;
+  font-size: 0.85rem;
+  opacity: 0.9;
 }

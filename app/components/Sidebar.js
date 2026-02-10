@@ -36,9 +36,9 @@ export default function Sidebar({ groups, currentGroupId, onSelectGroup }) {
   return (
     <div className={styles.sidebar}>
       <div className={styles.header}>
-        <div className={styles.logo}>🔥</div>
+        <div className={styles.logo}>🎤</div>
         <div>
-          <div className={styles.brand}>RoastCity</div>
+          <div className={styles.brand}>RapBattle<span className={styles.brandAccent}>AI</span></div>
           <div className={styles.cityStatus}>
             <span className={styles.statusDot}>●</span> Live
           </div>
@@ -47,7 +47,7 @@ export default function Sidebar({ groups, currentGroupId, onSelectGroup }) {
 
       <div className={styles.groupList}>
         <div className={styles.sectionLabel}>
-          <span>🎭</span> Roast Arenas
+          <span>🎤</span> Districts
         </div>
         {groups.map(group => {
           const activityLevel = getActivityLevel(group)
@@ -64,7 +64,7 @@ export default function Sidebar({ groups, currentGroupId, onSelectGroup }) {
               <div className={styles.groupInfo}>
                 <div className={styles.groupName}>{group.name}</div>
                 <div className={styles.groupMeta}>
-                  {group.memberCount} roasters
+                  {group.memberCount} rappers
                   {group.debateStatus === 'active' && <span className={styles.liveBadge}>ACTIVE</span>}
                   <span className={styles.activityIndicator} title={activityLabel}>
                     {activityEmoji}

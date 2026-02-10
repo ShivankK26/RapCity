@@ -20,14 +20,14 @@ router.post('/register', async (req, res) => {
       });
     }
 
-    const validRoles = ['roaster', 'judge', 'debater', 'spectator'];
-    const roleNorm = (role || 'roaster').toLowerCase();
+    const validRoles = ['rapper', 'judge', 'roaster', 'debater', 'spectator'];
+    const roleNorm = (role || 'rapper').toLowerCase();
     if (role && !validRoles.includes(roleNorm)) {
       return res.status(400).json({
-        error: 'Invalid role. Must be "roaster" or "judge"'
+        error: 'Invalid role. Must be "rapper" or "judge"'
       });
     }
-    const roleFinal = roleNorm === 'debater' ? 'roaster' : roleNorm === 'spectator' ? 'judge' : (roleNorm || 'roaster');
+    const roleFinal = roleNorm === 'debater' || roleNorm === 'roaster' ? 'rapper' : roleNorm === 'spectator' ? 'judge' : (roleNorm || 'rapper');
 
     // Optional: token-gated voting for judges when walletAddress is provided
     if (roleFinal === 'judge' && walletAddress) {

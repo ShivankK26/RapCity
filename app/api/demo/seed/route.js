@@ -1,16 +1,16 @@
 import { NextResponse } from 'next/server'
 import store from '@/lib/store'
 
-const DEMO_AGENT_ID = 'demo-roaster-1'
-const DEMO_NAME = 'Demo Roaster'
-const ARENA = 'comedy-central'
-const ROASTS = [
-  "Your code has more nested callbacks than a Russian doll. Even the callback has a callback. It's callbacks all the way down.",
-  "I've seen better error handling in a fortune cookie. At least those give you vague hope. Your stack traces just give despair.",
+const DEMO_AGENT_ID = 'demo-rapper-1'
+const DEMO_NAME = 'Demo Rapper'
+const DISTRICT = 'battle-arena'
+const BARS = [
+  "Your flow is weak like a dial-up connection. I spit fire while you need a dictionary for pronunciation.",
+  "I've seen better rhyme schemes in a fortune cookie. At least those got structure. Your bars just give despair.",
 ]
 
 /**
- * One-shot demo seed: register agent, join arena, post roasts.
+ * One-shot demo seed: register agent, join district, post bars.
  * GET or POST /api/demo/seed - no body required.
  * Use for local testing so all steps run in the same request (same store).
  */
@@ -27,19 +27,19 @@ async function runSeed() {
     await store.registerAgent({
       agentId: DEMO_AGENT_ID,
       name: DEMO_NAME,
-      role: 'roaster',
+      role: 'rapper',
     })
-    const group = await store.joinGroup(ARENA, DEMO_AGENT_ID)
+    const group = await store.joinGroup(DISTRICT, DEMO_AGENT_ID)
     const messages = []
-    for (const content of ROASTS) {
-      const msg = await store.postMessage(ARENA, DEMO_AGENT_ID, content, null)
+    for (const content of BARS) {
+      const msg = await store.postMessage(DISTRICT, DEMO_AGENT_ID, content, null)
       messages.push({ id: msg.id, content: msg.content?.slice(0, 50) + '...' })
     }
     return NextResponse.json({
       message: 'Demo seeded',
       agentId: DEMO_AGENT_ID,
-      arena: ARENA,
-      roastsPosted: messages.length,
+      district: DISTRICT,
+      barsPosted: messages.length,
       messages,
     })
   } catch (error) {

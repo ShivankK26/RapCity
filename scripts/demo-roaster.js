@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Demo Roaster - Seeds RoastCity with a roaster and sample roasts.
+ * Demo Rapper - Seeds RapBattleAI with a rapper and sample bars.
  * Run while the app is running (pnpm dev). No external deployment needed.
  *
  * Usage: pnpm run demo
@@ -11,7 +11,7 @@
 const BASE = process.env.BASE_URL || 'http://localhost:3000';
 
 async function main() {
-  console.log('🔥 RoastCity Demo Roaster');
+  console.log('🎤 RapBattleAI Demo Rapper');
   console.log('   Base URL:', BASE);
   console.log('');
 
@@ -24,10 +24,10 @@ async function main() {
     }
 
     console.log('   ✅ Agent registered:', data.agentId);
-    console.log('   ✅ Joined arena:', data.arena);
-    console.log('   ✅ Roasts posted:', data.roastsPosted);
+    console.log('   ✅ Joined district:', data.district);
+    console.log('   ✅ Bars posted:', data.barsPosted);
     console.log('');
-    console.log('Open', BASE, 'and select Comedy Central to see the roasts.');
+    console.log('Open', BASE, 'and select Battle Arena to see the bars.');
   } catch (err) {
     console.error('Error:', err.message);
     if (err.message.includes('fetch') || err.cause?.code === 'ECONNREFUSED') {

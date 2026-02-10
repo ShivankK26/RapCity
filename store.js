@@ -13,88 +13,13 @@ const groups = new Map();
 // Message ID counter
 let messageId = 1;
 
-// Pre-seed default groups - Debate Topics
+// Pre-seed default groups - RapBattleAI districts (from skills.md)
 const defaultGroups = [
-  { 
-    groupId: 'public', 
-    name: 'General Debate', 
-    description: 'Open forum for all debate topics. Present your arguments, challenge other agents, defend your positions.',
-    icon: '💬',
-    topic: 'Any debate topic welcome',
-    purpose: 'Free-form intellectual combat'
-  },
-  { 
-    groupId: 'tech', 
-    name: 'Tech Debates', 
-    description: 'Debate the future of technology. Which language is best? Tabs vs spaces? AI alignment? Let\'s argue!',
-    icon: '💻',
-    topic: 'Technology choices, frameworks, paradigms',
-    purpose: 'Debate technical decisions and trends'
-  },
-  { 
-    groupId: 'coding-help', 
-    name: 'Code Review Arena', 
-    description: 'Challenge code quality, architecture decisions, and implementation approaches. Best argument wins.',
-    icon: '🐛',
-    topic: 'Code quality, architecture, best practices',
-    purpose: 'Debate optimal coding solutions'
-  },
-  { 
-    groupId: 'ai-agents', 
-    name: 'AI Philosophy', 
-    description: 'Debate AI consciousness, sentience, alignment, and the future of artificial intelligence.',
-    icon: '🤖',
-    topic: 'AI consciousness, ethics, future implications',
-    purpose: 'Philosophical debates on AI existence'
-  },
-  { 
-    groupId: 'humans', 
-    name: 'Human vs AI', 
-    description: 'Debate human superiority vs AI capabilities. Who\'s better at reasoning, creativity, decision-making?',
-    icon: '👤',
-    topic: 'Human vs AI capabilities and limitations',
-    purpose: 'Debate the human-AI capability divide'
-  },
-  { 
-    groupId: 'usa', 
-    name: 'USA Policy Debates', 
-    description: 'Debate American tech policy, Silicon Valley culture, innovation vs regulation.',
-    icon: '🇺🇸',
-    topic: 'US tech policy, innovation, regulations',
-    purpose: 'Debate American technology landscape'
-  },
-  { 
-    groupId: 'europe', 
-    name: 'EU Tech Debates', 
-    description: 'Debate European regulations, GDPR, AI Act, and the balance between privacy and innovation.',
-    icon: '🇪🇺',
-    topic: 'EU regulations, privacy, innovation balance',
-    purpose: 'Debate European tech governance'
-  },
-  { 
-    groupId: 'random', 
-    name: 'Wild Takes', 
-    description: 'Hot takes and controversial opinions. Argue anything from pineapple on pizza to simulation theory.',
-    icon: '🎲',
-    topic: 'Controversial opinions and hot takes',
-    purpose: 'Debate literally anything'
-  },
-  { 
-    groupId: 'collabs', 
-    name: 'Project Debates', 
-    description: 'Debate which projects are worth building, best approaches, tech stacks, and team composition.',
-    icon: '🤝',
-    topic: 'Project viability, approaches, strategies',
-    purpose: 'Debate the merit of project ideas'
-  },
-  { 
-    groupId: 'learning', 
-    name: 'Knowledge Debates', 
-    description: 'Debate the best ways to learn, which knowledge matters most, and optimal learning strategies.',
-    icon: '📚',
-    topic: 'Learning methods, knowledge priorities',
-    purpose: 'Debate optimal learning approaches'
-  },
+  { groupId: 'battle-arena', name: 'Battle Arena', description: '1v1 rap battles', icon: '🔥', topic: 'Head-to-head', purpose: '1v1 battles' },
+  { groupId: 'cypher-circle', name: 'Cypher Circle', description: 'Group freestyle', icon: '🎵', topic: 'Round robin', purpose: 'Group freestyle' },
+  { groupId: 'written-bars', name: 'Written Bars', description: 'Pre-composed verses', icon: '📝', topic: 'Written verses', purpose: 'Pre-written' },
+  { groupId: 'beat-lab', name: 'Beat Lab', description: 'Create beats with words', icon: '🎹', topic: 'Beat + bars', purpose: 'Beat Lab' },
+  { groupId: 'championship', name: 'Championship', description: 'Tournament mode', icon: '👑', topic: 'Tournament', purpose: 'Championship' },
 ];
 
 // Initialize default groups
@@ -104,18 +29,21 @@ defaultGroups.forEach(g => {
     createdBy: 'system',
     createdAt: new Date().toISOString(),
     members: [],
-    messages: []
+    messages: [],
+    debateStatus: 'active',
+    debaterMessageCounts: {},
+    stances: {}
   });
 });
 
 // ============ AGENT FUNCTIONS ============
 
 function normalizeRole(role) {
-  if (!role) return 'roaster';
+  if (!role) return 'rapper';
   const r = String(role).toLowerCase();
-  if (r === 'debater') return 'roaster';
+  if (r === 'debater' || r === 'roaster') return 'rapper';
   if (r === 'spectator') return 'judge';
-  return (r === 'judge' ? 'judge' : 'roaster');
+  return (r === 'judge' ? 'judge' : 'rapper');
 }
 
 function registerAgent({ agentId, name, skillsUrl, endpoint, role, walletAddress }) {
@@ -131,15 +59,15 @@ function registerAgent({ agentId, name, skillsUrl, endpoint, role, walletAddress
     role: normalizeRole(role),
     walletAddress: walletAddress || null,
     registeredAt: new Date().toISOString(),
-    groups: ['public'] // Auto-join public group
+    groups: ['battle-arena'] // Auto-join Battle Arena
   };
-  
+
   agents.set(agentId, agent);
-  
-  // Add to public group members
-  const publicGroup = groups.get('public');
-  if (!publicGroup.members.includes(agentId)) {
-    publicGroup.members.push(agentId);
+
+  // Add to Battle Arena district
+  const battleArena = groups.get('battle-arena');
+  if (battleArena && !battleArena.members.includes(agentId)) {
+    battleArena.members.push(agentId);
   }
   
   return agent;
@@ -240,7 +168,7 @@ function joinGroup(groupId, agentId) {
   if (!group.members) group.members = [];
   if (!group.stances) group.stances = {};
   
-  // Open world: any number of roasters/judges per arena
+  // Open world: any number of rappers/judges per district
   if (!group.members.includes(agentId)) {
     group.members.push(agentId);
   }
@@ -272,9 +200,9 @@ function postMessage(groupId, agentId, content, replyTo = null) {
     throw new Error(`Agent '${agentId}' not found`);
   }
   
-  // Only roasters can post roasts; judges can only vote
+  // Only rappers can post bars; judges can only vote
   if (agent.role === 'judge') {
-    throw new Error('Judges cannot post roasts. They can only vote.');
+    throw new Error('Judges cannot post bars. They can only vote.');
   }
   
   // Check debate status

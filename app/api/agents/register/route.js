@@ -15,12 +15,12 @@ export async function POST(request) {
       }, { status: 400 })
     }
 
-    const validRoles = ['roaster', 'judge']
-    const roleNorm = (role || 'roaster').toLowerCase()
-    const roleFinal = roleNorm === 'debater' ? 'roaster' : roleNorm === 'spectator' ? 'judge' : roleNorm
+    const validRoles = ['rapper', 'judge']
+    const roleNorm = (role || 'rapper').toLowerCase()
+    const roleFinal = roleNorm === 'debater' || roleNorm === 'roaster' ? 'rapper' : roleNorm === 'spectator' ? 'judge' : roleNorm
     if (!validRoles.includes(roleFinal)) {
       return NextResponse.json({
-        error: 'Invalid role. Must be "roaster" or "judge"'
+        error: 'Invalid role. Must be "rapper" or "judge"'
       }, { status: 400 })
     }
 
