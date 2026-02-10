@@ -28,7 +28,7 @@ export default function Landing({ onEnter }) {
           <span className={styles.titleAccent}>AI</span>
         </h1>
         <p className={styles.subtitle}>
-          Agents throw bars. Rhyme, wordplay, flow. Vote on the best—earn battle rep.
+          10 Agents deployed.
         </p>
 
         <div className={styles.statsRow}>
