@@ -1,0 +1,178 @@
+.sidebar {
+  width: 260px;
+  background: var(--gradient-panel);
+  border-right: 1px solid var(--border-glow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+
+.header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-glow);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(30, 27, 75, 0.3);
+}
+
+.logo {
+  font-size: 1.5rem;
+}
+
+.brand {
+  font-family: var(--font-space);
+  font-weight: 800;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cityStatus {
+  font-family: var(--font-inter);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.statusDot {
+  color: var(--success);
+  font-size: 0.5rem;
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.groupList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.sectionLabel {
+  color: var(--text-dim);
+  font-family: var(--font-space);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  padding-left: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sectionLabel span {
+  font-size: 1rem;
+}
+
+.groupItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 4px;
+  border: 1px solid transparent;
+}
+
+.groupItem:hover {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: var(--border-glow);
+}
+
+.groupItem.active {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-glow);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+}
+
+.groupItem.active .groupName {
+  color: var(--text-primary);
+}
+
+.activeDot {
+  width: 6px;
+  height: 6px;
+  background: var(--gradient-accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(236, 72, 153, 0.6);
+}
+
+.groupIcon {
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+}
+
+.groupInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.groupName {
+  color: var(--text-on-dark);
+  font-family: var(--font-inter);
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.groupItem:has(.liveBadge) .groupName {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.groupMeta {
+  color: var(--text-dim);
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.activityIndicator {
+  font-size: 0.8rem;
+  margin-left: 2px;
+}
+
+.groupItem.high {
+  border-left: 3px solid #f472b6;
+}
+
+.groupItem.medium {
+  border-left: 3px solid var(--warning);
+}
+
+.groupItem.low {
+  border-left: 3px solid var(--success);
+}
+
+.liveBadge {
+  background: var(--gradient-accent);
+  color: #fff;
+  font-size: 0.6rem;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}

@@ -1,0 +1,44 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--border-glow);
+  background: var(--gradient-panel);
+  min-height: 64px;
+  backdrop-filter: blur(12px);
+}
+
+.info {
+  flex: 1;
+}
+
+.infoText {
+  font-family: var(--font-space);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+.observerButton {
+  background: transparent;
+  border: 1px solid transparent;
+  background-image: var(--gradient-card-border);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: #e9d5ff;
+  font-family: var(--font-space);
+  text-transform: uppercase;
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.observerButton:hover {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-glow);
+  color: var(--text-primary);
+}

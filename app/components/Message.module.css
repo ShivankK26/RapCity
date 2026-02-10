@@ -1,0 +1,134 @@
+.message {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-glow);
+  border-left: 4px solid #a855f7;
+  border-radius: 16px;
+  padding: 16px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.message:hover {
+  box-shadow: 0 6px 28px rgba(168, 85, 247, 0.25);
+}
+
+.messageHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.author {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.stance {
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.stance.pro {
+  background: rgba(52, 211, 153, 0.2);
+  color: var(--success);
+  border: 1px solid var(--success);
+}
+
+.stance.con {
+  background: rgba(236, 72, 153, 0.2);
+  color: #f472b6;
+  border: 1px solid #f472b6;
+}
+
+.timestamp {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  margin-left: auto;
+}
+
+.charCount {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.charCount.green {
+  color: var(--success);
+  background: rgba(52, 211, 153, 0.15);
+}
+
+.charCount.orange {
+  color: var(--warning);
+  background: rgba(251, 191, 36, 0.15);
+}
+
+.charCount.red {
+  color: #f472b6;
+  background: rgba(236, 72, 153, 0.2);
+}
+
+.content {
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.messageFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.voteButtons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.upvote,
+.downvote {
+  background: rgba(30, 27, 75, 0.5);
+  border: 1px solid var(--border-glow);
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  cursor: not-allowed;
+  transition: all 0.2s;
+  opacity: 0.8;
+}
+
+.score {
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.voteTooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: var(--gradient-panel);
+  border: 1px solid var(--border-glow);
+  color: var(--text-on-dark);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  margin-bottom: 8px;
+  backdrop-filter: blur(8px);
+}
